@@ -42,5 +42,12 @@ For the sake of this demo, a mock api is created which shows proof of work done 
 
 Now you have to run, 
 `yarn install` and `yarn start` this will redirect you to a form where you need to enter the obtained ERC-20 Wrapped Long Token from step 2. 
-Now, a calculation of IDA (Instant Distribution Agreement) is made based on the data obtained from the API. Now, the long tokens are streamed on basis of this IDA to all the recipients of KPI options contract parameters. 
+Now there are two ways to send the tokens to the recipient addresses one is by IDA(Instant Distribution Agreement) and other is by streaming the tokens to account . 
+
+1. A calculation of IDA (Instant Distribution Agreement) is made based on the data obtained from the API. Now, the long tokens are distributed on basis of this IDA to all the recipients of KPI options contract parameters instantanously. 
+
+2. Otherwise they can be streamed to the recipients once the correct flow rate is determined by filling in the form. 
 				
+
+### Ahoy! There is more!! 
+There is also a functionality which is that every user in order to recieve the long tokens needs to vote first on community post of the contract. Now the post can be about deciding the new CEO or any major transition, unless the person has not voted they would not get the respective tokens. Do not worry though, once they do it, they will recieve the remaining tokens as well. 
