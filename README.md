@@ -1,3 +1,4 @@
+## KPI Options Token Distribution via Superfluid Streams
 ### Step 1:  Deploy UMA KPI Options Contract
 
 - Clone the repository https://github.com/UMAprotocol/launch-lsp
@@ -34,7 +35,12 @@ You will get  longToken and shortTokens, we will now create super token from lon
 You can easily create super token by using superfluid tools. You can follow the instructions provided [here](https://docs.superfluid.finance/superfluid/docs/super-tokens#erc20-wrapper-super-token) . 
 You will get an super token address which you will have to enter later on. 
 
-### Step 3:  
+### Step 3:  Send KPI Long Tokens to workers based on API real time. 
 
+For the sake of this demo, a mock api is created which shows proof of work done by addresses along with how much contribution they have made. You can check the API on, 
+`https://run.mocky.io/v3/2e64e74b-b232-431c-804a-8a5b0b0bf113`.
 
-
+Now you have to run, 
+`yarn install` and `yarn start` this will redirect you to a form where you need to enter the obtained ERC-20 Wrapped Long Token from step 2. 
+Now, a calculation of IDA (Instant Distribution Agreement) is made based on the data obtained from the API. Now, the long tokens are streamed on basis of this IDA to all the recipients of KPI options contract parameters. 
+				

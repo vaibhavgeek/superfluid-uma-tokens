@@ -4,10 +4,11 @@ import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 
 // Layouts
-import LayoutSignin from './layouts/LayoutSignin';
+import Layout from './layouts/Layout';
 
 // Views 
-import Login from './views/Login';
+import IDA from './views/IDA';
+import Stream from './views/Stream';
 
 class App extends React.Component {
 
@@ -29,7 +30,9 @@ class App extends React.Component {
         ref="scrollReveal"
         children={() => (
           <Switch>
-            <AppRoute exact path="/" component={Login} layout={LayoutSignin} />
+            <AppRoute exact path="/" component={IDA} layout={Layout} />
+            <AppRoute exact path="/stream" component={Stream} layout={Layout} />
+
           </Switch>
         )} />
     );
