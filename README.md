@@ -1,70 +1,40 @@
-# Evelyn
+### Step 1:  Deploy UMA KPI Options Contract
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Clone the repository https://github.com/UMAprotocol/launch-lsp
+-  `cd launch-lsp`
+- Make sure you have enough UMA tokens on testnet kovan account. Use the seed phrase in the command below. 
+- Create an infura account and get project link.
 
-## Available Scripts
+```
+node index.js \
+--gasprice 80 \
+--url https://kovan.infura.io/v3/-id- \
+--mnemonic "secret phrase" \
+--pairName "UMA Streaming Platform" \
+--expirationTimestamp 1640966400 \
+--collateralPerPair 1000000000000000000 \
+--priceIdentifier UMAUSD \
+--longSynthName "UMA Streaming Platform Token" \
+--longSynthSymbol UMA-STREAM-PLT \
+--shortSynthName "UMA Streaming Platform Token" \
+--shortSynthSymbol UMA-STREAM-SHORT \
+--collateralToken 0x489Bf230d4Ab5c2083556E394a28276C22c3B580 \
+--customAncillaryData "Metric:Time in Streaming minutes,Endpoint:"http://localhost:3000/kpi_targets",Method:"https​://github.com/vaibhavgeek/superfluid-uma-tokens",Key: TimeToLive,Interval:Real Time Update,Rounding:-6,Scaling:-6" \
+--optimisticOracleLivenessTime 3600 \
+--fpl Linear \
+--lowerBound 0 \
+--upperBound 1000000000000000000 \
+--prepaidProposerBond 20000000000000000000 \
+--optimisticOracleProposerBond 40000000000000000000
+```
+You will get  longToken and shortTokens, we will now create super token from longTokens to be distributed among the recipients of the KPI achievers.
 
-In the project directory, you can run:
+### Step 2: Create an ERC-20 super token using command line. 
 
-### `npm start`
+You can easily create super token by using superfluid tools. You can follow the instructions provided [here](https://docs.superfluid.finance/superfluid/docs/super-tokens#erc20-wrapper-super-token) . 
+You will get an super token address which you will have to enter later on. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Step 3:  
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
