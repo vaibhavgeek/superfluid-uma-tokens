@@ -6,7 +6,7 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 const axios = require("axios");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
-const { Web3Provider } = require("@ethersproject/providers");
+const Web3 = require("web3");
 
 const propTypes = {
   ...SectionProps.types,
@@ -16,17 +16,36 @@ const defaultProps = {
   ...SectionProps.defaults,
 };
 
+let sf;
+
 class LoginForm extends React.Component {
   state = {
     contractAddress: "",
     recipientAddress: "",
     tokenStream: "",
     frequency: "",
+    walletAddress: "",
   };
 
-  componentDidMount() {
+  
+  async componentDidMount() {
+    sf = new SuperfluidSDK.Framework({
+      web3: new Web3(window.ethereum),
+    });
+    await sf.initialize();
+    const walletAddress = await window.ethereum.request({
+      method: "eth_requestAccounts",
+      params: [
+        {
+          eth_accounts: {},
+        },
+      ],
+    });
+    console.log("wallet-address", walletAddress);
+    this.setState({ walletAddress: walletAddress[0], contractAddress: "" });
+
     axios
-      .get("https://run.mocky.io/v3/2e64e74b-b232-431c-804a-8a5b0b0bf113")
+      .get("https://618e1d3950e24d0017ce1080.mockapi.io/mock")
       .then(function (response) {
         // handle success
         console.log("api json", response.data);
@@ -46,11 +65,6 @@ class LoginForm extends React.Component {
 
     window.ethereum.enable();
 
-    const sf = new SuperfluidSDK.Framework({
-      ethers: new Web3Provider(window.ethereum),
-    });
-
-    await sf.initialize();
 
     const walletAddress = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -60,10 +74,10 @@ class LoginForm extends React.Component {
         },
       ],
     });
-
+    console.log(walletAddress[0]);
     const carol = sf.user({
       address: walletAddress[0],
-      token: "0xc6eB7e1d2325C8750D58a75ab71f1730f463aFA2",
+      token: "0x46CE36F1e483f55CEd7f638633F929Df50bBDC65",
     });
 
     let details = await carol.details();
@@ -71,7 +85,7 @@ class LoginForm extends React.Component {
 
     await carol.flow({
       recipient: "0x230eBd3F5F443Dc8d64fA3c01f242b4F880E07c2",
-      flowRate: "385802469135802",
+      flowRate: "15802469135802",
     });
     details = await carol.details();
     console.log(details);
