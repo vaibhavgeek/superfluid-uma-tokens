@@ -152,6 +152,17 @@ class LoginForm extends React.Component {
                           }
                         />
                       </div>
+                      <label className="form-label"> Number of Tokens </label>
+                      <div className="mb-12">
+                        <Input
+                          type="input"
+                          placeholder="Flow Rate for Streaming"
+                          required
+                          onChange={(e) =>
+                            this.setState({ tokenStream: e.target.value })
+                          }
+                        />
+                      </div>
                       <label className="form-label"> Flow Rate </label>
                       <div className="mb-12">
                         <Input
