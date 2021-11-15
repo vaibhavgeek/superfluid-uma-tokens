@@ -27,7 +27,6 @@ class LoginForm extends React.Component {
     walletAddress: "",
   };
 
-  
   async componentDidMount() {
     sf = new SuperfluidSDK.Framework({
       web3: new Web3(window.ethereum),
@@ -64,7 +63,6 @@ class LoginForm extends React.Component {
     console.log(this.state);
 
     window.ethereum.enable();
-
 
     const walletAddress = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -154,34 +152,16 @@ class LoginForm extends React.Component {
                           }
                         />
                       </div>
-                      <label className="form-label"> Token Stream </label>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gridTemplateColumns: "6fr 6fr",
-                        }}
-                        className="mb-12"
-                      >
+                      <label className="form-label"> Flow Rate </label>
+                      <div className="mb-12">
                         <Input
                           type="input"
-                          placeholder="Tokens"
+                          placeholder="Flow Rate for Streaming"
                           required
                           onChange={(e) =>
                             this.setState({ tokenStream: e.target.value })
                           }
                         />
-                        <select
-                          onChange={(e) =>
-                            this.setState({ frequency: e.target.value })
-                          }
-                          style={{ width: "40%" }}
-                        >
-                          <option>day</option>
-                          <option> week </option>
-                          <option> month </option>
-                          <option>year</option>
-                        </select>
                       </div>
                       <div className="mt-24 mb-32">
                         <Button type="submit" color="primary" wide>

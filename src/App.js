@@ -1,19 +1,18 @@
-import React from 'react';
-import { withRouter, Switch } from 'react-router-dom';
-import AppRoute from './utils/AppRoute';
-import ScrollReveal from './utils/ScrollReveal';
+import React from "react";
+import { withRouter, Switch } from "react-router-dom";
+import AppRoute from "./utils/AppRoute";
+import ScrollReveal from "./utils/ScrollReveal";
 
 // Layouts
-import Layout from './layouts/Layout';
+import Layout from "./layouts/Layout";
 
-// Views 
-import IDA from './views/IDA';
-import Stream from './views/Stream';
+// Views
+import IDA from "./views/IDA";
+import Stream from "./views/Stream";
 
 class App extends React.Component {
-
   componentDidMount() {
-    document.body.classList.add('is-loaded')
+    document.body.classList.add("is-loaded");
     this.refs.scrollReveal.init();
   }
 
@@ -26,17 +25,24 @@ class App extends React.Component {
 
   render() {
     return (
-      <ScrollReveal
-        ref="scrollReveal"
-        children={() => (
-          <Switch>
-            <AppRoute exact path="/" component={IDA} layout={Layout} />
-            <AppRoute exact path="/stream" component={Stream} layout={Layout} />
-
-          </Switch>
-        )} />
+      <>
+        <ScrollReveal
+          ref="scrollReveal"
+          children={() => (
+            <Switch>
+              <AppRoute exact path="/" component={IDA} layout={Layout} />
+              <AppRoute
+                exact
+                path="/stream"
+                component={Stream}
+                layout={Layout}
+              />
+            </Switch>
+          )}
+        />
+      </>
     );
   }
 }
 
-export default withRouter(props => <App {...props} />);
+export default withRouter((props) => <App {...props} />);
